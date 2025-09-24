@@ -607,7 +607,7 @@ export default {
     const loadApplicationData = async (id) => {
       try {
         loading.value = true
-        const response = await axios.get(`http://localhost:3000/api/application/${id}`)
+        const response = await axios.get(`http://161.97.159.45/api/application/${id}`)
         const data = response.data
         
         applicationData.value = data
@@ -669,12 +669,12 @@ export default {
         let response
         if (isEditMode.value && applicationId) {
           // Update existing application
-          response = await axios.put(`http://localhost:3000/api/application/${applicationId}`, formData, {
+          response = await axios.put(`http://161.97.159.45/api/application/${applicationId}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
           })
         } else {
           // Create new application
-          response = await axios.post('http://localhost:3000/api/application', formData, {
+          response = await axios.post('http://161.97.159.45/api/application', formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
           })
         }
@@ -703,7 +703,7 @@ export default {
 
     const downloadFile = async (type) => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/application/${applicationId}/download/${type}`, {
+        const response = await axios.get(`http://161.97.159.45/api/application/${applicationId}/download/${type}`, {
           responseType: 'blob'
         })
         

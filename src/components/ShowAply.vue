@@ -391,7 +391,7 @@ export default {
       loading.value = true
       
       try {
-        const response = await axios.post('http://localhost:3000/api/app', {
+        const response = await axios.get('http://161.97.159.45/api/app', {
           passportJsshir: searchForm.passportJsshir,
           phone: searchForm.phone
         })
@@ -423,7 +423,7 @@ export default {
 
     const downloadFile = async (type) => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/application/${applicationData.value.id}/download/${type}`, {
+        const response = await axios.get(`http://161.97.159.45/api/application/${applicationData.value.id}/download/${type}`, {
           responseType: 'blob'
         })
         
@@ -544,8 +544,8 @@ export default {
 
 <style scoped>
 .application-login {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* min-height: 100vh; */
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   padding: 2rem 1rem;
   display: flex;
   align-items: center;
@@ -553,7 +553,7 @@ export default {
 }
 
 .login-container {
-  max-width: 1200px;
+  max-width: 800px;
   width: 100%;
 }
 
