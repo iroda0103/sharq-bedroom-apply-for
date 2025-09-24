@@ -48,7 +48,6 @@ img {
   height: auto;
 }
 
-
 a {
   text-decoration: none;
 }
@@ -57,9 +56,7 @@ li {
   list-style: none;
 }
 
-main {
-  margin-top: 90px;
-}
+
 
 
 .container {
