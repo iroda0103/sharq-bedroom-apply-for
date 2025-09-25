@@ -235,7 +235,7 @@ export function apiService(baseUrl) {
         throw new ApiError('Status kerak', 400, 'MISSING_STATUS')
       }
 
-      const validStatuses = ['successful', 'rejected', 'created']
+      const validStatuses = ['successfull', 'rejected', 'created']
       if (!validStatuses.includes(updateData.status)) {
         throw new ApiError(
           `Noto'g'ri status. Quyidagilardan birini tanlang: ${validStatuses.join(', ')}`,
