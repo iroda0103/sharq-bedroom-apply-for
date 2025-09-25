@@ -23,16 +23,9 @@
               <i class="fas fa-id-card"></i>
               JSHIR (Jismoniy shaxsning identifikatsiya raqami)
             </label>
-            <input
-              v-model="searchForm.passportJsshir"
-              type="text"
-              class="form-input"
-              :class="{ 'error': errors.passportJsshir }"
-              placeholder="12345678901234"
-              maxlength="14"
-              @input="formatJsshir"
-              required
-            />
+            <input v-model="searchForm.passportJsshir" type="text" class="form-input"
+              :class="{ 'error': errors.passportJsshir }" placeholder="12345678901234" maxlength="14"
+              @input="formatJsshir" required />
             <div class="input-help">14 ta raqamdan iborat bo'lishi kerak</div>
             <div v-if="errors.passportJsshir" class="error-message">
               {{ errors.passportJsshir }}
@@ -44,26 +37,15 @@
               <i class="fas fa-phone"></i>
               Telefon raqami
             </label>
-            <input
-              v-model="searchForm.phone"
-              type="tel"
-              class="form-input"
-              :class="{ 'error': errors.phone }"
-              placeholder="+998 90 123 45 67"
-              @input="formatPhoneNumber"
-              required
-            />
+            <input v-model="searchForm.phone" type="tel" class="form-input" :class="{ 'error': errors.phone }"
+              placeholder="+998 90 123 45 67" @input="formatPhoneNumber" required />
             <div class="input-help">+998 bilan boshlanuvchi format</div>
             <div v-if="errors.phone" class="error-message">
               {{ errors.phone }}
             </div>
           </div>
 
-          <button
-            type="submit"
-            class="search-btn"
-            :disabled="!isFormValid || loading"
-          >
+          <button type="submit" class="search-btn" :disabled="!isFormValid || loading">
             <i v-if="loading" class="fas fa-spinner fa-spin"></i>
             <i v-else class="fas fa-search"></i>
             {{ loading ? 'Qidirilmoqda...' : 'Arizani qidirish' }}
@@ -75,7 +57,7 @@
             <i class="fas fa-info-circle"></i>
             <span>Agar ma'lumotlaringizni unutgan bo'lsangiz, qo'llab-quvvatlash xizmatiga murojaat qiling</span>
           </div>
-          
+
           <div class="contact-section">
             <a href="https://t.me/sharq_qabul" target="_blank" class="contact-link">
               <i class="fab fa-telegram"></i>
@@ -175,12 +157,8 @@
 
           <div class="documents-section">
             <div v-if="applicationData.passport_images && applicationData.passport_images.length" class="document-grid">
-              <div
-                v-for="(imageUrl, index) in applicationData.passport_images"
-                :key="index"
-                class="document-item"
-                @click="viewImage(imageUrl)"
-              >
+              <div v-for="(imageUrl, index) in applicationData.passport_images" :key="index" class="document-item"
+                @click="viewImage(imageUrl)">
                 <i class="fas fa-file-image"></i>
                 <span>Pasport rasmi {{ index + 1 }}</span>
                 <button type="button" class="view-btn">
@@ -209,7 +187,8 @@
                 <span class="date-value">{{ formatDate(applicationData.created_at) }}</span>
               </div>
             </div>
-            <div class="date-item" v-if="applicationData.updated_at && applicationData.updated_at !== applicationData.created_at">
+            <div class="date-item"
+              v-if="applicationData.updated_at && applicationData.updated_at !== applicationData.created_at">
               <i class="fas fa-calendar-edit"></i>
               <div>
                 <span class="date-label">Oxirgi o'zgarish:</span>
@@ -225,19 +204,19 @@
               <div>
                 <h4>Arizangiz ko'rib chiqilmoqda</h4>
                 <p>Javob kutib turing. Tez orada siz bilan bog'lanamiz.</p>
-                <button @click="editApplication" class="edit-btn">
+                <!-- <button @click="editApplication" class="edit-btn">
                   <i class="fas fa-edit"></i>
                   Arizani tahrirlash
-                </button>
+                </button> -->
               </div>
             </div>
 
-            <div v-else-if="applicationData.status === 'approved'" class="action-card approved">
+            <div v-else-if="applicationData.status == 'successfull'" class="action-card successfull">
               <i class="fas fa-check-circle"></i>
               <div>
-                <h4>Tabriklaymiz! Arizangiz qabul qilindi</h4>
-                <p>Yotoqxona ma'lumotlari va kerakli hujjatlarni quyidagi tugmalar orqali yuklab oling.</p>
-                <div class="download-buttons">
+                <h2>Tabriklaymiz! Arizangiz qabul qilindi</h2>
+                <!-- <p>Yotoqxona ma'lumotlari va kerakli hujjatlarni quyidagi tugmalar orqali yuklab oling.</p> -->
+                <!-- <div class="download-buttons">
                   <button @click="downloadFile('contract')" class="download-btn">
                     <i class="fas fa-file-pdf"></i>
                     Shartnoma
@@ -246,7 +225,7 @@
                     <i class="fas fa-qrcode"></i>
                     QR kod
                   </button>
-                </div>
+                </div> -->@sharq_qabul 
               </div>
             </div>
 
@@ -305,6 +284,7 @@
 <script>
 import { ref, reactive, computed } from 'vue'
 import axios from 'axios'
+// import ErrorModal from './ErrorModal.vue'
 
 export default {
   name: 'ApplicationLogin',
@@ -327,15 +307,15 @@ export default {
 
     // Computed
     const isFormValid = computed(() => {
-      return searchForm.passportJsshir.length === 14 && 
-             searchForm.phone.match(/^\+998\d{9}$/)
+      return searchForm.passportJsshir.length === 14 &&
+        searchForm.phone.match(/^\+998\d{9}$/)
     })
 
     // Input formatters
     const formatJsshir = (event) => {
       let value = event.target.value.replace(/[^0-9]/g, '')
       searchForm.passportJsshir = value.slice(0, 14)
-      
+
       // Clear JSHIR error when user types
       if (errors.value.passportJsshir) {
         delete errors.value.passportJsshir
@@ -344,7 +324,7 @@ export default {
 
     const formatPhoneNumber = (event) => {
       let value = event.target.value.replace(/[^0-9+]/g, '')
-      
+
       if (!value.startsWith('+998')) {
         if (value.startsWith('998')) {
           value = '+' + value
@@ -354,9 +334,9 @@ export default {
           value = '+998' + value
         }
       }
-      
+
       searchForm.phone = value.slice(0, 13)
-      
+
       // Clear phone error when user types
       if (errors.value.phone) {
         delete errors.value.phone
@@ -389,14 +369,28 @@ export default {
       }
 
       loading.value = true
-      
+
       try {
-        const response = await axios.get('http://161.97.159.45/api/app', {
+        console.log('DATA', {
+          passportJsshir: searchForm.passportJsshir,
+          phone: searchForm.phone
+        })
+        // const response = await axios.get('http://161.97.159.45/api/app', {
+        const response = await axios.post('http://localhost:3000/api/app', {
           passportJsshir: searchForm.passportJsshir,
           phone: searchForm.phone
         })
 
-        applicationData.value = response.data
+        // applicationData.value = response.data
+        const app = response.data
+
+        applicationData.value = {
+          ...app,
+          passportSeries: app.passport?.series || '',
+          passportNumber: app.passport?.number || '',
+          passportJsshir: app.passport?.jsshir || '',
+          passport_images: app.passport?.images?.map(img => `http://localhost:3000/uploads/passport/${img}`) || []
+        }
         applicationFound.value = true
 
         // Scroll to application section
@@ -408,14 +402,18 @@ export default {
 
       } catch (error) {
         console.error('Ariza qidirishda xatolik:', error)
-        
-        if (error.response?.status === 404) {
-          showError('Ushbu ma\'lumotlar bilan ariza topilmadi. Iltimos, ma\'lumotlarni tekshirib qayta urinib ko\'ring.')
-        } else if (error.response?.status === 400) {
-          showError('Noto\'g\'ri ma\'lumotlar kiritildi. Iltimos, JSHIR va telefon raqamingizni to\'g\'ri kiriting.')
-        } else {
-          showError('Serverda xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko\'ring.')
-        }
+        // showErrorModal.value = true
+        const message = error?.response?.data?.message || 'Serverda xatolik yuz berdi!'
+        showError(message)
+
+        // showError('Ariza qidirishda xatolik yuz berdi. Iltimos, ma\'lumotlaringizni tekshirib qayta urinib ko\'ring.')
+        // if (error.response?.status === 404) {
+        //   showError('Ushbu ma\'lumotlar bilan ariza topilmadi. Iltimos, ma\'lumotlarni tekshirib qayta urinib ko\'ring.')
+        // } else if (error.response?.status === 400) {
+        //   showError('Noto\'g\'ri ma\'lumotlar kiritildi. Iltimos, JSHIR va telefon raqamingizni to\'g\'ri kiriting.')
+        // } else {
+        //   showError('Serverda xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko\'ring.')
+        // }
       } finally {
         loading.value = false
       }
@@ -426,7 +424,7 @@ export default {
         const response = await axios.get(`http://161.97.159.45/api/application/${applicationData.value.id}/download/${type}`, {
           responseType: 'blob'
         })
-        
+
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const link = document.createElement('a')
         link.href = url
@@ -435,7 +433,7 @@ export default {
         link.click()
         link.remove()
         window.URL.revokeObjectURL(url)
-        
+
       } catch (error) {
         console.error('Faylni yuklashda xatolik:', error)
         showError('Faylni yuklashda xatolik yuz berdi')
@@ -473,7 +471,7 @@ export default {
       const icons = {
         pending: 'fas fa-clock',
         created: 'fas fa-hourglass-half',
-        approved: 'fas fa-check-circle',
+        successfull: 'fas fa-check-circle',
         rejected: 'fas fa-times-circle'
       }
       return icons[status] || 'fas fa-question-circle'
@@ -483,7 +481,7 @@ export default {
       const texts = {
         pending: 'Kutilmoqda',
         created: 'Ko\'rib chiqilmoqda',
-        approved: 'Qabul qilindi',
+        successfull: 'Qabul qilindi',
         rejected: 'Rad etildi'
       }
       return texts[status] || 'Noma\'lum holat'
@@ -491,9 +489,9 @@ export default {
 
     const formatDate = (dateString) => {
       const date = new Date(dateString)
-      const options = { 
-        year: 'numeric', 
-        month: 'long', 
+      const options = {
+        year: 'numeric',
+        month: 'long',
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit'
@@ -520,10 +518,10 @@ export default {
       errorMessage,
       showImageModal,
       currentImageUrl,
-      
+
       // Computed
       isFormValid,
-      
+
       // Methods
       formatJsshir,
       formatPhoneNumber,
@@ -759,7 +757,7 @@ export default {
   color: white;
 }
 
-.status-approved {
+.status-successfull {
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
 }
@@ -913,4 +911,5 @@ export default {
   padding: 1rem;
   background: #f3f4f6;
   border-radius: 12px;
-}</style>
+}
+</style>

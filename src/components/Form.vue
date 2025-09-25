@@ -18,7 +18,8 @@
             <i class="fas fa-check"></i>
           </div>
           <h3>✅ Arizangiz muvaffaqiyatli yuborildi!</h3>
-          <p>Tez orada siz bilan bog'lanamiz. Telegram: <a href="https://t.me/sharq_qabul" target="_blank">@sharq_qabul</a></p>
+          <p>Tez orada siz bilan bog'lanamiz. Telegram: <a href="https://t.me/sharq_yotoqxona"
+              target="_blank">@sharq_yotoqxona</a></p>
         </div>
 
         <!-- Status Messages -->
@@ -28,7 +29,8 @@
           </div>
           <h3>❌ Arizangiz rad etildi</h3>
           <p v-if="rejectionReason">Sabab: {{ rejectionReason }}</p>
-          <p>Yangi ariza topshirish uchun bizning telegram kanalimizga murojaat qiling: <a href="https://t.me/sharq_qabul" target="_blank">@sharq_qabul</a></p>
+          <p>Yangi ariza topshirish uchun bizning telegram kanalimizga murojaat qiling: <a
+              href="https://t.me/sharq_yotoqxona" target="_blank">@sharq_yotoqxona</a></p>
         </div>
 
         <!-- Approved Message with Downloads -->
@@ -67,29 +69,15 @@
           <div class="form-row">
             <div class="form-group">
               <label class="label">Familiya *</label>
-              <input 
-                v-model="form.last_name" 
-                type="text" 
-                class="input" 
-                :class="{ error: errors.last_name }"
-                :disabled="isViewMode"
-                placeholder="Familiyangizni kiriting" 
-                required
-              >
+              <input v-model="form.last_name" type="text" class="input" :class="{ error: errors.last_name }"
+                :disabled="isViewMode" placeholder="Familiyangizni kiriting" required>
               <div v-if="errors.last_name" class="error-message">{{ errors.last_name }}</div>
             </div>
 
             <div class="form-group">
               <label class="label">Ism *</label>
-              <input 
-                v-model="form.first_name" 
-                type="text" 
-                class="input" 
-                :class="{ error: errors.first_name }"
-                :disabled="isViewMode"
-                placeholder="Ismingizni kiriting" 
-                required
-              >
+              <input v-model="form.first_name" type="text" class="input" :class="{ error: errors.first_name }"
+                :disabled="isViewMode" placeholder="Ismingizni kiriting" required>
               <div v-if="errors.first_name" class="error-message">{{ errors.first_name }}</div>
             </div>
           </div>
@@ -97,25 +85,14 @@
           <div class="form-row">
             <div class="form-group">
               <label class="label">Otasining ismi</label>
-              <input 
-                v-model="form.father_name" 
-                type="text" 
-                class="input"
-                :disabled="isViewMode"
-                placeholder="Otangizning ismini kiriting"
-              >
+              <input v-model="form.father_name" type="text" class="input" :disabled="isViewMode"
+                placeholder="Otangizning ismini kiriting">
             </div>
 
             <div class="form-group">
               <label class="label">Tug'ilgan sana *</label>
-              <input 
-                v-model="form.birth_date" 
-                type="date" 
-                class="input" 
-                :class="{ error: errors.birth_date }"
-                :disabled="isViewMode"
-                required
-              >
+              <input v-model="form.birth_date" type="date" class="input" :class="{ error: errors.birth_date }"
+                :disabled="isViewMode" required>
               <div v-if="errors.birth_date" class="error-message">{{ errors.birth_date }}</div>
             </div>
           </div>
@@ -129,49 +106,22 @@
           <div class="form-row">
             <div class="form-group">
               <label class="label">Pasport seriyasi *</label>
-              <input 
-                v-model="form.passportSeries" 
-                type="text" 
-                class="input" 
-                :class="{ error: errors.passportSeries }"
-                :disabled="isViewMode"
-                placeholder="AA" 
-                maxlength="2"
-                @input="formatPassportSeries"
-                required
-              >
+              <input v-model="form.passportSeries" type="text" class="input" :class="{ error: errors.passportSeries }"
+                :disabled="isViewMode" placeholder="AA" maxlength="2" @input="formatPassportSeries" required>
               <div v-if="errors.passportSeries" class="error-message">{{ errors.passportSeries }}</div>
             </div>
 
             <div class="form-group">
               <label class="label">Pasport raqami *</label>
-              <input 
-                v-model="form.passportNumber" 
-                type="text" 
-                class="input" 
-                :class="{ error: errors.passportNumber }"
-                :disabled="isViewMode"
-                placeholder="1234567" 
-                maxlength="7"
-                @input="formatPassportNumber"
-                required
-              >
+              <input v-model="form.passportNumber" type="text" class="input" :class="{ error: errors.passportNumber }"
+                :disabled="isViewMode" placeholder="1234567" maxlength="7" @input="formatPassportNumber" required>
               <div v-if="errors.passportNumber" class="error-message">{{ errors.passportNumber }}</div>
             </div>
 
             <div class="form-group">
               <label class="label">JSHIR *</label>
-              <input 
-                v-model="form.passportJsshir" 
-                type="text" 
-                class="input" 
-                :class="{ error: errors.passportJsshir }"
-                :disabled="isViewMode"
-                placeholder="12345678901234" 
-                maxlength="14"
-                @input="formatJsshir"
-                required
-              >
+              <input v-model="form.passportJsshir" type="text" class="input" :class="{ error: errors.passportJsshir }"
+                :disabled="isViewMode" placeholder="12345678901234" maxlength="14" @input="formatJsshir" required>
               <div v-if="errors.passportJsshir" class="error-message">{{ errors.passportJsshir }}</div>
             </div>
           </div>
@@ -185,16 +135,8 @@
           <div class="form-row">
             <div class="form-group">
               <label class="label">Telefon raqami *</label>
-              <input 
-                v-model="form.phone" 
-                type="tel" 
-                class="input" 
-                :class="{ error: errors.phone }"
-                :disabled="isViewMode"
-                placeholder="+998 90 123 45 67"
-                @input="formatPhoneNumber"
-                required
-              >
+              <input v-model="form.phone" type="tel" class="input" :class="{ error: errors.phone }"
+                :disabled="isViewMode" placeholder="+998 90 123 45 67" @input="formatPhoneNumber" required>
               <div v-if="errors.phone" class="error-message">{{ errors.phone }}</div>
             </div>
           </div>
@@ -202,15 +144,8 @@
           <!-- Yashash manzili -->
           <div class="form-group">
             <label class="label">Hozirgi yashash manzili *</label>
-            <textarea 
-              v-model="form.address" 
-              class="textarea" 
-              :class="{ error: errors.address }"
-              :disabled="isViewMode"
-              placeholder="Viloyat, tuman/shahar, ko'cha, uy raqami..." 
-              rows="3" 
-              required
-            ></textarea>
+            <textarea v-model="form.address" class="textarea" :class="{ error: errors.address }" :disabled="isViewMode"
+              placeholder="Viloyat, tuman/shahar, ko'cha, uy raqami..." rows="3" required></textarea>
             <div v-if="errors.address" class="error-message">{{ errors.address }}</div>
           </div>
 
@@ -223,14 +158,8 @@
           <div class="form-group">
             <label class="label">Pasport nusxasi (oldi va orqa tomoni) *</label>
             <div v-if="!isViewMode" class="upload-area" @click="$refs.passportInput.click()">
-              <input 
-                ref="passportInput" 
-                type="file" 
-                multiple 
-                accept="image/*,.pdf"
-                @change="handleFileUpload($event, 'passportImage')" 
-                hidden
-              >
+              <input ref="passportInput" type="file" multiple accept="image/*,.pdf"
+                @change="handleFileUpload($event, 'passportImage')" hidden>
               <i class="fas fa-cloud-upload-alt"></i>
               <span>Pasport nusxalarini yuklang (2 ta fayl)</span>
               <small>PNG, JPG yoki PDF formatida</small>
@@ -262,14 +191,9 @@
           <!-- Qo'shimcha ma'lumotlar -->
           <div class="form-group">
             <label class="label">Qo'shimcha ma'lumotlar</label>
-            <textarea 
-              v-model="form.additionalInfo" 
-              class="textarea"
-              :disabled="isViewMode"
-              placeholder="Yotoqxonada qolish sabablaringiz, maxsus ehtiyojlaringiz haqida yozing..."
-              rows="4"
-              maxlength="500"
-            ></textarea>
+            <textarea v-model="form.additionalInfo" class="textarea" :disabled="isViewMode"
+              placeholder="Yotoqxonada qolish sabablaringiz, maxsus ehtiyojlaringiz haqida yozing..." rows="4"
+              maxlength="500"></textarea>
             <div class="counter">{{ form.additionalInfo.length }}/500</div>
           </div>
 
@@ -342,9 +266,9 @@
             Bog'lanish
           </h3>
           <p>Qo'shimcha savollar uchun:</p>
-          <a href="https://t.me/sharq_qabul" target="_blank" class="telegram-btn">
+          <a href="https://t.me/sharq_yotoqxona" target="_blank" class="telegram-btn">
             <i class="fab fa-telegram-plane"></i>
-            @sharq_qabul
+            @sharq_yotoqxona
           </a>
         </div>
 
@@ -354,21 +278,21 @@
             Jarayon bosqichlari
           </h3>
           <div class="steps">
-            <div class="step" :class="{ 
-              active: currentStep >= 1, 
-              completed: currentStep > 1 || applicationStatus === 'submitted' 
+            <div class="step" :class="{
+              active: currentStep >= 1,
+              completed: currentStep > 1 || applicationStatus === 'submitted'
             }">
               <div class="step-number">1</div>
               <span>Ariza to'ldirish</span>
             </div>
-            <div class="step" :class="{ 
-              active: currentStep >= 2 || applicationData.status === 'created', 
-              completed: applicationStatus === 'approved' || applicationStatus === 'rejected' 
+            <div class="step" :class="{
+              active: currentStep >= 2 || applicationData.status === 'created',
+              completed: applicationStatus === 'approved' || applicationStatus === 'rejected'
             }">
               <div class="step-number">2</div>
               <span>Hujjat saralash</span>
             </div>
-            <div class="step" :class="{ 
+            <div class="step" :class="{
               active: applicationStatus === 'approved' || applicationStatus === 'rejected',
               completed: applicationStatus === 'approved' || applicationStatus === 'rejected'
             }">
@@ -385,7 +309,8 @@
       <div class="modal-content" @click.stop>
         <div class="modal-header">
           <h3><i class="fas fa-exclamation-triangle"></i> Xatolik</h3>
-          <button @click="closeErrorModal" class="modal-close">
+          <button @click="closeErrorModal" class="modal-clos
+          e">
             <i class="fas fa-times"></i>
           </button>
         </div>
@@ -441,7 +366,7 @@ export default {
     const showErrorModal = ref(false)
     const showImageModal = ref(false)
     const currentImageUrl = ref('')
-    
+
     // Application status states
     const applicationStatus = ref('new') // new, submitted, created, approved, rejected
     const applicationData = ref({})
@@ -459,9 +384,9 @@ export default {
     })
 
     const shouldShowForm = computed(() => {
-      return applicationStatus.value === 'new' || 
-             applicationStatus.value === 'created' || 
-             isEditMode.value
+      return applicationStatus.value === 'new' ||
+        applicationStatus.value === 'created' ||
+        isEditMode.value
     })
 
     const isFormValid = computed(() => {
@@ -514,11 +439,11 @@ export default {
       if (!form.last_name.trim()) {
         errors.value.last_name = 'Familiya majburiy maydon'
       }
-      
+
       if (!form.first_name.trim()) {
         errors.value.first_name = 'Ism majburiy maydon'
       }
-      
+
       if (!form.birth_date) {
         errors.value.birth_date = 'Tug\'ilgan sana majburiy maydon'
       } else {
@@ -528,31 +453,31 @@ export default {
           errors.value.birth_date = 'Yosh 16-50 oralig\'ida bo\'lishi kerak'
         }
       }
-      
+
       if (!form.passportSeries.trim()) {
         errors.value.passportSeries = 'Pasport seriyasi majburiy maydon'
       } else if (!/^[A-Z]{2}$/.test(form.passportSeries)) {
         errors.value.passportSeries = 'Pasport seriyasi 2 ta katta harf bo\'lishi kerak'
       }
-      
+
       if (!form.passportNumber.trim()) {
         errors.value.passportNumber = 'Pasport raqami majburiy maydon'
       } else if (!/^\d{7}$/.test(form.passportNumber)) {
         errors.value.passportNumber = 'Pasport raqami 7 ta raqam bo\'lishi kerak'
       }
-      
+
       if (!form.passportJsshir.trim()) {
         errors.value.passportJsshir = 'JSHIR majburiy maydon'
       } else if (!/^\d{14}$/.test(form.passportJsshir)) {
         errors.value.passportJsshir = 'JSHIR 14 ta raqam bo\'lishi kerak'
       }
-      
+
       if (!form.phone.trim()) {
         errors.value.phone = 'Telefon raqami majburiy maydon'
       } else if (!/^\+998\d{9}$/.test(form.phone)) {
         errors.value.phone = 'Telefon raqami noto\'g\'ri formatda'
       }
-      
+
       if (!form.address.trim()) {
         errors.value.address = 'Yashash manzili majburiy maydon'
       }
@@ -569,7 +494,7 @@ export default {
     const handleFileUpload = (event, fieldName) => {
       const files = Array.from(event.target.files)
       const currentTotal = form[fieldName].length + passportImageUrls.value.length
-      
+
       if (currentTotal + files.length > 2) {
         showError('Maksimal 2 ta fayl yuklash mumkin')
         return
@@ -582,12 +507,12 @@ export default {
           showError(`${file.name} fayli juda katta (maksimal 5MB)`)
           continue
         }
-        
+
         if (!file.type.match(/^image\/(jpeg|jpg|png)$/) && file.type !== 'application/pdf') {
           showError(`${file.name} fayli noto'g'ri formatda`)
           continue
         }
-        
+
         validFiles.push(file)
       }
 
@@ -607,12 +532,12 @@ export default {
     const loadApplicationData = async (id) => {
       try {
         loading.value = true
-        const response = await axios.get(`http://161.97.159.45/api/application/${id}`)
+        const response = await axios.get(`http://localhost:3000/api/application/${id}`)
         const data = response.data
-        
+
         applicationData.value = data
         applicationStatus.value = data.status
-        
+
         if (data.rejection_reason) {
           rejectionReason.value = data.rejection_reason
         }
@@ -653,7 +578,7 @@ export default {
 
       try {
         const formData = new FormData()
-        
+
         // Add form fields
         Object.keys(form).forEach(key => {
           if (key !== 'passportImage' && key !== 'agreement') {
@@ -669,12 +594,12 @@ export default {
         let response
         if (isEditMode.value && applicationId) {
           // Update existing application
-          response = await axios.put(`http://161.97.159.45/api/application/${applicationId}`, formData, {
+          response = await axios.put(`http://localhost:3000/api/application/${applicationId}`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
           })
         } else {
           // Create new application
-          response = await axios.post('http://161.97.159.45/api/application', formData, {
+          response = await axios.post('http://localhost:3000/api/application', formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
           })
         }
@@ -694,7 +619,7 @@ export default {
 
       } catch (error) {
         console.error('❌ Xatolik:', error)
-        const message = error.response?.data?.message || 'Serverda xatolik yuz berdi!'
+        const message = error.message || 'Serverda xatolik yuz berdi!'
         showError(message)
       } finally {
         loading.value = false
@@ -703,10 +628,10 @@ export default {
 
     const downloadFile = async (type) => {
       try {
-        const response = await axios.get(`http://161.97.159.45/api/application/${applicationId}/download/${type}`, {
+        const response = await axios.get(`http://localhost:3000/api/application/${applicationId}/download/${type}`, {
           responseType: 'blob'
         })
-        
+
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const link = document.createElement('a')
         link.href = url
@@ -715,7 +640,7 @@ export default {
         link.click()
         link.remove()
         window.URL.revokeObjectURL(url)
-        
+
       } catch (error) {
         console.error('Faylni yuklashda xatolik:', error)
         showError('Faylni yuklashda xatolik yuz berdi')
@@ -802,12 +727,12 @@ export default {
       passportImageUrls,
       isEditMode,
       rejectionReason,
-      
+
       // Computed
       isViewMode,
       shouldShowForm,
       isFormValid,
-      
+
       // Methods
       formatPassportSeries,
       formatPassportNumber,
@@ -827,7 +752,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .dormitory-form {
   min-height: 100vh;
   padding: 2rem 1rem;
@@ -910,7 +835,9 @@ export default {
   margin-bottom: 2rem;
 }
 
-.success-icon, .rejection-icon, .approval-icon {
+.success-icon,
+.rejection-icon,
+.approval-icon {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -922,12 +849,16 @@ export default {
   font-size: 2rem;
 }
 
-.success-message h3, .rejection-message h3, .approval-message h3 {
+.success-message h3,
+.rejection-message h3,
+.approval-message h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.success-message a, .rejection-message a, .approval-message a {
+.success-message a,
+.rejection-message a,
+.approval-message a {
   color: white;
   text-decoration: underline;
 }
@@ -1115,7 +1046,8 @@ export default {
   color: #374151;
 }
 
-.remove-btn, .view-btn {
+.remove-btn,
+.view-btn {
   width: 24px;
   height: 24px;
   border: none;
@@ -1236,6 +1168,9 @@ export default {
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: none;
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -1546,6 +1481,7 @@ export default {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1560,10 +1496,16 @@ export default {
 
 /* Loading spinner */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .fa-spin {
   animation: spin 1s linear infinite;
-}</style>
+}
+</style>
