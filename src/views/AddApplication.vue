@@ -30,6 +30,7 @@ export default {
     position: relative;
     /* padding: 130px 0; */
     height: 100%;
+    width: 100%;
 }
 
 .apply {
