@@ -203,7 +203,7 @@
               <input type="checkbox" v-model="form.agreement" required>
               <span class="checkmark"></span>
               <span class="agreement-text">
-                Men barcha ma'lumotlarning to'g'riligini tasdiqlaymen va yotoqxona qoidalariga rioya
+                Men barcha ma'lumotlarning to'g'riligini tasdiqlayman va yotoqxona qoidalariga rioya
                 qilishga roziman *
               </span>
             </label>
@@ -619,7 +619,7 @@ export default {
 
       } catch (error) {
         console.error('❌ Xatolik:', error)
-        const message = error.message || 'Serverda xatolik yuz berdi!'
+        const message = error.response?.data?.message || 'Serverda xatolik yuz berdi!'
         showError(message)
       } finally {
         loading.value = false

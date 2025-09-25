@@ -58,32 +58,32 @@ function createAxiosInstance(baseUrl) {
       return response
     },
     (error) => {
-      console.error('API Error:', error.response?.data || error.message)
+      console.error('API Error:', error.response?.data?.message || error.message)
       
-      if (error.response) {
-        // Server responded with error status
-        const { status, data } = error.response
-        throw new ApiError(
-          data?.message || data?.error || `Server error: ${status}`,
-          status,
-          data?.code || `HTTP_${status}`,
-          data
-        )
-      } else if (error.request) {
-        // Network error
-        throw new ApiError(
-          'Tarmoq xatosi. Internet aloqangizni tekshiring.',
-          0,
-          'NETWORK_ERROR'
-        )
-      } else {
-        // Other error
-        throw new ApiError(
-          error.message || 'Noma\'lum xatolik yuz berdi',
-          500,
-          'UNKNOWN_ERROR'
-        )
-      }
+      // if (error.response) {
+      //   // Server responded with error status
+      //   const { status, data } = error.response
+      //   throw new ApiError(
+      //     data?.message || data?.error || `Server error: ${status}`,
+      //     status,
+      //     data?.code || `HTTP_${status}`,
+      //     data
+      //   )
+      // } else if (error.request) {
+      //   // Network error
+      //   throw new ApiError(
+      //     'Tarmoq xatosi. Internet aloqangizni tekshiring.',
+      //     0,
+      //     'NETWORK_ERROR'
+      //   )
+      // } else {
+      //   // Other error
+      //   throw new ApiError(
+      //     error.message || 'Noma\'lum xatolik yuz berdi',
+      //     500,
+      //     'UNKNOWN_ERROR'
+      //   )
+      // }
     }
   )
 
@@ -463,7 +463,7 @@ export function apiService(baseUrl) {
           console.log(`✅ Working endpoint found: ${endpoint}`)
           return { endpoint, status: response.status, working: true }
         } catch (error) {
-          console.log(`❌ Failed endpoint: ${endpoint} - ${error.status || error.message}`)
+          console.log(`❌ Failed endpoint: ${endpoint} - ${error.status || error?.response?.data?.message}`)
         }
       }
 
@@ -478,30 +478,30 @@ export function apiService(baseUrl) {
  * Error handler utility for components
  */
 export function handleApiError(error, defaultMessage = 'Xatolik yuz berdi') {
-  if (error instanceof ApiError) {
-    switch (error.code) {
-      case 'NETWORK_ERROR':
-        return 'Internet aloqasi yo\'q. Iltimos internetni tekshiring.'
-      case 'INVALID_STATUS':
-        return 'Noto\'g\'ri holat tanilgan.'
-      case 'MISSING_ID':
-        return 'Ariza ID topilmadi.'
-      case 'HTTP_401':
-        return 'Sizga ruxsat berilmagan. Qayta kiring.'
-      case 'HTTP_403':
-        return 'Bu amalni bajarish uchun ruxsatingiz yo\'q.'
-      case 'HTTP_404':
-        return 'Ma\'lumot topilmadi yoki server manzili noto\'g\'ri.'
-      case 'HTTP_500':
-        return 'Server xatosi. Iltimos keyinroq urinib ko\'ring.'
-      case 'NO_WORKING_ENDPOINT':
-        return 'Server bilan bog\'lanib bo\'lmayapti. Admin bilan bog\'laning.'
-      default:
-        return error.message || defaultMessage
-    }
-  }
+  // if (error instanceof ApiError) {
+    // switch (error.code) {
+    //   case 'NETWORK_ERROR':
+    //     return 'Internet aloqasi yo\'q. Iltimos internetni tekshiring.'
+    //   case 'INVALID_STATUS':
+    //     return 'Noto\'g\'ri holat tanilgan.'
+    //   case 'MISSING_ID':
+    //     return 'Ariza ID topilmadi.'
+    //   case 'HTTP_401':
+    //     return 'Sizga ruxsat berilmagan. Qayta kiring.'
+    //   case 'HTTP_403':
+    //     return 'Bu amalni bajarish uchun ruxsatingiz yo\'q.'
+    //   case 'HTTP_404':
+    //     return 'Ma\'lumot topilmadi yoki server manzili noto\'g\'ri.'
+    //   case 'HTTP_500':
+    //     return 'Server xatosi. Iltimos keyinroq urinib ko\'ring.'
+    //   case 'NO_WORKING_ENDPOINT':
+    //     return 'Server bilan bog\'lanib bo\'lmayapti. Admin bilan bog\'laning.'
+    //   default:
+    //     return error.message || defaultMessage
+    // }
+  // }
   
-  return error.message || defaultMessage
+  return error.response?.data?.message || defaultMessage
 }
 
 /**
