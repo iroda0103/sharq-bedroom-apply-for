@@ -78,10 +78,10 @@
             </div>
 
             <div class="stat-card">
-              <div class="icon approved">
+              <div class="icon successfull">
                 <i class="fas fa-check"></i>
               </div>
-              <div class="number">{{ statistics.approved }}
+              <div class="number">{{ statistics.successfull }}
                 <div class="label">Tasdiqlangan</div>
               </div>
 
@@ -437,7 +437,7 @@ export default {
     // Computed properties
     const statistics = computed(() => ({
       pending: applications.value.filter(app => app.status === 'created').length,
-      approved: applications.value.filter(app => app.status === 'successfull').length,
+      successfull: applications.value.filter(app => app.status === 'successfull').length,
       rejected: applications.value.filter(app => app.status === 'rejected').length
     }))
 
@@ -1171,7 +1171,7 @@ export default {
   background: #f59e0b;
 }
 
-.icon.approved {
+.icon.successfull {
   background: #10b981;
 }
 

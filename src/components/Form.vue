@@ -33,8 +33,8 @@
               href="https://t.me/sharq_yotoqxona" target="_blank">@sharq_yotoqxona</a></p>
         </div>
 
-        <!-- Approved Message with Downloads -->
-        <div v-if="applicationStatus === 'approved'" class="approval-message">
+        <!-- successfull Message with Downloads -->
+        <div v-if="applicationStatus === 'successfull'" class="approval-message">
           <div class="approval-icon">
             <i class="fas fa-check-circle"></i>
           </div>
@@ -287,14 +287,14 @@
             </div>
             <div class="step" :class="{
               active: currentStep >= 2 || applicationData.status === 'created',
-              completed: applicationStatus === 'approved' || applicationStatus === 'rejected'
+              completed: applicationStatus === 'successfull' || applicationStatus === 'rejected'
             }">
               <div class="step-number">2</div>
               <span>Hujjat saralash</span>
             </div>
             <div class="step" :class="{
-              active: applicationStatus === 'approved' || applicationStatus === 'rejected',
-              completed: applicationStatus === 'approved' || applicationStatus === 'rejected'
+              active: applicationStatus === 'successfull' || applicationStatus === 'rejected',
+              completed: applicationStatus === 'successfull' || applicationStatus === 'rejected'
             }">
               <div class="step-number">3</div>
               <span>Natija e'lon qilish</span>
@@ -368,7 +368,7 @@ export default {
     const currentImageUrl = ref('')
 
     // Application status states
-    const applicationStatus = ref('new') // new, submitted, created, approved, rejected
+    const applicationStatus = ref('new') // new, submitted, created, successfull, rejected
     const applicationData = ref({})
     const passportImageUrls = ref([])
     const isEditMode = ref(false)
@@ -557,7 +557,7 @@ export default {
         // Set current step based on status
         if (data.status === 'created') {
           currentStep.value = 2
-        } else if (data.status === 'approved' || data.status === 'rejected') {
+        } else if (data.status === 'successfull' || data.status === 'rejected') {
           currentStep.value = 3
         }
 

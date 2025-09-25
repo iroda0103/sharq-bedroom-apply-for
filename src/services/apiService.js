@@ -336,12 +336,12 @@ export function apiService(baseUrl) {
             throw error
           }
         }
-
+// successfull
         const data = response.data
         return {
           total: data.total || 0,
           pending: data.pending || data.created || 0,
-          approved: data.approved || data.successful || 0,
+          successfull: data.successfull || data.successfull || 0,
           rejected: data.rejected || 0
         }
       } catch (error) {
@@ -350,7 +350,7 @@ export function apiService(baseUrl) {
         return {
           total: 0,
           pending: 0,
-          approved: 0,
+          successfull: 0,
           rejected: 0
         }
       }
