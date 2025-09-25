@@ -376,7 +376,7 @@ export default {
   name: 'AdminPanel',
   setup() {
     // Configuration
-    const BASE_URL = process.env.VUE_APP_API_BASE_URL || 'http://localhost:3000/api'
+    const BASE_URL = process.env.VUE_APP_API_BASE_URL || 'https://api.sharq-dev.uz/api'
     const ITEMS_PER_PAGE = 10
 
     // State
@@ -482,7 +482,7 @@ export default {
     }
 
     const getImageUrl = (imageName) => {
-      return `http://localhost:3000/uploads/passport/${imageName}`
+      return `https://api.sharq-dev.uz/uploads/passport/${imageName}`
     }
 
     const handleImageError = (event) => {

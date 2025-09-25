@@ -376,7 +376,7 @@ export default {
           phone: searchForm.phone
         })
         // const response = await axios.get('http://161.97.159.45/api/app', {
-        const response = await axios.post('http://localhost:3000/api/app', {
+        const response = await axios.post('https://api.sharq-dev.uz/api/app', {
           passportJsshir: searchForm.passportJsshir,
           phone: searchForm.phone
         })
@@ -389,7 +389,7 @@ export default {
           passportSeries: app.passport?.series || '',
           passportNumber: app.passport?.number || '',
           passportJsshir: app.passport?.jsshir || '',
-          passport_images: app.passport?.images?.map(img => `http://localhost:3000/uploads/passport/${img}`) || []
+          passport_images: app.passport?.images?.map(img => `https://api.sharq-dev.uz/uploads/passport/${img}`) || []
         }
         applicationFound.value = true
 
