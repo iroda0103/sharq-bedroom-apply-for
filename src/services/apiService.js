@@ -58,7 +58,7 @@ function createAxiosInstance(baseUrl) {
       return response
     },
     (error) => {
-      console.error('API Error:', error.response?.data?.message || error.message)
+      console.error('API Error:', error.response?.data?.message)
       
       // if (error.response) {
       //   // Server responded with error status

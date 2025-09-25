@@ -666,7 +666,7 @@ export default {
       }
 
       if (confirm(`${selectedApplications.value.length} ta arizani tasdiqlashni istaysizmi?`)) {
-        await bulkUpdateStatus(selectedApplications.value, 'successfulll')
+        await bulkUpdateStatus(selectedApplications.value, 'successfull')
       }
     }
 
