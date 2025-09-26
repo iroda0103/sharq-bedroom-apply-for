@@ -515,24 +515,13 @@ export default {
     };
 
     const downloadFile = async (fileName) => {
-      try {
-        const url = getImageUrl(fileName);
-        const response = await fetch(url);
-        const blob = await response.blob();
-        const blobUrl = window.URL.createObjectURL(blob);
-
-        const link = document.createElement("a");
-        link.href = blobUrl;
-        link.download = fileName; // brauzer shu nom bilan saqlaydi
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // blob urlni tozalash
-        window.URL.revokeObjectURL(blobUrl);
-      } catch (error) {
-        console.error("Yuklab olishda xatolik:", error);
-      }
+      const url = this.getImageUrl(fileName);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     };
 
     // Toast methods
@@ -1863,32 +1852,98 @@ th.sortable i {
   gap: 1rem;
 }
 
+.file-item {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(22,163,74,0.10), 0 1.5px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.22s cubic-bezier(0.4,0,0.2,1), transform 0.1s;
+  width: 220px;
+  padding: 18px 18px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 22px;
+  gap: 10px;
+}
+.file-item:hover {
+  box-shadow: 0 6px 25px rgba(22,163,74,0.18), 0 2.5px 8px rgba(0,0,0,0.09);
+  transform: translateY(-3px) scale(1.03);
+  border-color: #b7e1cd;
+}
+
+.image-preview {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #f1f8f4 0%, #e9f1ec 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid #e3e3e3;
+  transition: box-shadow 0.2s;
+}
+.passport-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.pdf-preview {
+  width: 120px;
+  height: 120px;
+  background: #f9fafb;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1.5px solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-name, span {
+  font-size: 15px;
+  color: #15803d;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  word-break: break-all;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
 .download-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
+  gap: 7px;
+  padding: 8px 18px;
   border: none;
-  border-radius: 8px;
-  background: #16a34a;
-  /* yashil */
-  color: white;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%);
+  color: #fff;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 12px rgba(22,163,74,0.06);
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  outline: none;
+  margin-top: 4px;
 }
-
 .download-btn:hover {
-  background: #15803d;
-  /* hoverda to‘q yashil */
+  background: linear-gradient(90deg, #13a053 0%, #16a34a 100%);
+  box-shadow: 0 4px 18px rgba(22,163,74,0.11);
+  transform: scale(1.045);
 }
-
 .download-btn:active {
-  transform: scale(0.96);
+  background: #15803d;
+  transform: scale(0.97);
 }
-
 @keyframes slideIn {
   from {
     transform: translateX(100%);
