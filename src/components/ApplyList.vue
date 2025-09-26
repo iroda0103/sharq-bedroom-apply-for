@@ -329,8 +329,25 @@
             <div class="file-preview">
               <div v-for="image in selectedApplication.passport?.images || []" :key="image" class="file-item"
                 @click="openImageModal(image)">
-                <img :src="getImageUrl(image)" :alt="image" class="passport-image" @error="handleImageError">
-                <span>{{ image }}</span>
+                <!-- <img v-if="isImage(image)" :src="getImageUrl(image)" :alt="image" class="passport-image"
+                  @error="handleImageError">
+                <img v-else :src="getImageUrl(image)" :alt="image" class="passport-image" @error="handleImageError"> -->
+                <template v-if="isImage(image)">
+                  <img :src="getImageUrl(image)" :alt="image" class="passport-image" @error="handleImageError" />
+                  <span>{{ image }}</span>
+                  <button @click.stop="downloadFile(image)">⬇️ Yuklab olish</button>
+                </template>
+
+                <template v-else-if="isPdf(image)">
+                  <div class="pdf-preview">
+                    <embed :src="getImageUrl(image)" type="application/pdf" width="100%" height="150px" />
+                  </div>
+                  <span>{{ image }}</span>
+                  <button @click.stop="downloadFile(image)" class="download-btn">
+                    ⬇️ Yuklab olish
+                  </button>
+                </template>
+                <!-- <span>{{ image }}</span> -->
               </div>
             </div>
           </div>
@@ -485,10 +502,27 @@ export default {
       return `https://api.sharq-dev.uz/uploads/passport/${imageName}`
     }
 
-    const handleImageError = (event) => {
-      event.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik01MCA2NUM1Ny4xNzk3IDY1IDYzIDU5LjE3OTcgNjMgNTJDNjMgNDQuODIwMyA1Ny4xNzk3IDM5IDUwIDM5QzQyLjgyMDMgMzkgMzcgNDQuODIwMyAzNyA1MkMzNyA1OS4xNzk3IDQyLjgyMDMgNjUgNTAgNjVaIiBmaWxsPSIjOUI5QjlCIi8+CjxwYXRoIGQ9Ik0yNSA3NUMyNSA2OC4wOTY0IDMwLjU5NjQgNjIuNSAzNy41IDYyLjVINjIuNUM2OS40MDM2IDYyLjUgNzUgNjguMDk2NCA3NSA3NVY4Nkg3NVYzNUgyNVY3NVoiIGZpbGw9IiM5QjlCOUIiLz4KPC9zdmc+'
-      event.target.alt = 'Image not found'
-    }
+    const isImage = (fileName) => {
+      return /\.(jpe?g|png|gif|webp|svg)$/i.test(fileName);
+    };
+
+    const isPdf = (fileName) => {
+      return /\.pdf$/i.test(fileName);
+    };
+
+    const handleImageError = (e) => {
+      e.target.src = "/fallback.png"; // fallback rasm
+    };
+
+    const downloadFile = (fileName) => {
+      const url = getImageUrl(fileName);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName; // shu nom bilan saqlanadi
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
 
     // Toast methods
     const showToast = (message, type = 'success', icon = 'fa-check') => {
@@ -912,6 +946,9 @@ export default {
       getStatusText,
       getStatusIcon,
       getImageUrl,
+      isImage,
+      isPdf,
+      downloadFile,
       handleImageError,
       fetchApplications,
       updateApplicationStatus,
