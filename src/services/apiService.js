@@ -107,10 +107,11 @@ export function apiService(baseUrl) {
     async getApplications(params = {}, page = {}) {
       try {
         const queryParams = {
-          //   limit: params.limit || 10,
-          //   offset: params.offset || 0,
+          page: {
+            limit: page.limit || 10,
+            offset: page.offset || 0,
+          },
           filters: {},
-          page: {},
         }
 
         // Add optional filters
@@ -120,8 +121,6 @@ export function apiService(baseUrl) {
         if (params.sortField) queryParams.sortField = params.sortField
         if (params.sortDirection) queryParams.sort = params.sortDirection
         if (params.sortDirection) queryParams.sort = params.sortDirection
-        if (page.limit) queryParams.page.limit = page.limit
-        if (page.offset) queryParams.page.offset = page.offset
 
         // Try multiple possible endpoints
         let response
