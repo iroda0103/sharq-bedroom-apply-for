@@ -514,14 +514,25 @@ export default {
       e.target.src = "/fallback.png"; // fallback rasm
     };
 
-    const downloadFile = (fileName) => {
-      const url = getImageUrl(fileName);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = fileName; // shu nom bilan saqlanadi
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    const downloadFile = async (fileName) => {
+      try {
+        const url = getImageUrl(fileName);
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = fileName; // brauzer shu nom bilan saqlaydi
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // blob urlni tozalash
+        window.URL.revokeObjectURL(blobUrl);
+      } catch (error) {
+        console.error("Yuklab olishda xatolik:", error);
+      }
     };
 
     // Toast methods
@@ -1850,6 +1861,32 @@ th.sortable i {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #16a34a;
+  /* yashil */
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.download-btn:hover {
+  background: #15803d;
+  /* hoverda to‘q yashil */
+}
+
+.download-btn:active {
+  transform: scale(0.96);
 }
 
 @keyframes slideIn {
