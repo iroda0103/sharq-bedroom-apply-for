@@ -13,7 +13,7 @@
             Arizani tekshirish
           </h1>
           <p class="login-subtitle">
-            Yuborgan arizangizning holatini bilish uchun JSHIR va telefon raqamingizni kiriting
+            Yuborgan arizangizning holatini bilish uchun JShShIR va telefon raqamingizni kiriting
           </p>
         </div>
 
@@ -21,7 +21,7 @@
           <div class="form-group">
             <label class="form-label">
               <i class="fas fa-id-card"></i>
-              JSHIR (Jismoniy shaxsning identifikatsiya raqami)
+              JShShIR (Jismoniy shaxsning identifikatsiya raqami)
             </label>
             <input v-model="searchForm.passportJsshir" type="text" class="form-input"
               :class="{ 'error': errors.passportJsshir }" placeholder="12345678901234" maxlength="14"
@@ -127,7 +127,7 @@
               <input type="text" :value="applicationData.passportNumber" disabled />
             </div>
             <div class="form-field">
-              <label>JSHIR</label>
+              <label>JShShIR</label>
               <input type="text" :value="applicationData.passportJsshir" disabled />
             </div>
           </div>
@@ -317,7 +317,7 @@ export default {
       let value = event.target.value.replace(/[^0-9]/g, '')
       searchForm.passportJsshir = value.slice(0, 14)
 
-      // Clear JSHIR error when user types
+      // Clear JShShIR error when user types
       if (errors.value.passportJsshir) {
         delete errors.value.passportJsshir
       }
@@ -349,9 +349,9 @@ export default {
       errors.value = {}
 
       if (!searchForm.passportJsshir) {
-        errors.value.passportJsshir = 'JSHIR majburiy maydon'
+        errors.value.passportJsshir = 'JShShIR majburiy maydon'
       } else if (!/^\d{14}$/.test(searchForm.passportJsshir)) {
-        errors.value.passportJsshir = 'JSHIR 14 ta raqamdan iborat bo\'lishi kerak'
+        errors.value.passportJsshir = 'JShShIR 14 ta raqamdan iborat bo\'lishi kerak'
       }
 
       if (!searchForm.phone) {
@@ -411,7 +411,7 @@ export default {
         // if (error.response?.status === 404) {
         //   showError('Ushbu ma\'lumotlar bilan ariza topilmadi. Iltimos, ma\'lumotlarni tekshirib qayta urinib ko\'ring.')
         // } else if (error.response?.status === 400) {
-        //   showError('Noto\'g\'ri ma\'lumotlar kiritildi. Iltimos, JSHIR va telefon raqamingizni to\'g\'ri kiriting.')
+        //   showError('Noto\'g\'ri ma\'lumotlar kiritildi. Iltimos, JShShIR va telefon raqamingizni to\'g\'ri kiriting.')
         // } else {
         //   showError('Serverda xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko\'ring.')
         // }

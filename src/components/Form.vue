@@ -120,7 +120,7 @@
             </div>
 
             <div class="form-group">
-              <label class="label">JSHIR *</label>
+              <label class="label">JShShIR *</label>
               <input v-model="form.passportJsshir" type="text" class="input" :class="{ error: errors.passportJsshir }"
                 :disabled="isViewMode" placeholder="12345678901234" maxlength="14" @input="formatJsshir" required>
               <div v-if="errors.passportJsshir" class="error-message">{{ errors.passportJsshir }}</div>
@@ -256,7 +256,7 @@
             </li>
             <li>
               <i class="fas fa-check"></i>
-              JSHIR 14 ta raqamdan iborat bo'lishi kerak
+              JShShIR 14 ta raqamdan iborat bo'lishi kerak
             </li>
           </ul>
         </div>
@@ -471,9 +471,9 @@ export default {
       }
 
       if (!form.passportJsshir.trim()) {
-        errors.value.passportJsshir = 'JSHIR majburiy maydon'
+        errors.value.passportJsshir = 'JShShIR majburiy maydon'
       } else if (!/^\d{14}$/.test(form.passportJsshir)) {
-        errors.value.passportJsshir = 'JSHIR 14 ta raqam bo\'lishi kerak'
+        errors.value.passportJsshir = 'JShShIR 14 ta raqam bo\'lishi kerak'
       }
 
       if (!form.phone.trim()) {
