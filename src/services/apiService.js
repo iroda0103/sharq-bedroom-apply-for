@@ -116,7 +116,7 @@ export function apiService(baseUrl) {
         }
 
         // Add optional filters
-        if (params.status) queryParams.filters = params.status
+        if (params.status) queryParams.filters.status = params.status
         if (params.search) queryParams.q = params.search
         if (params.date) queryParams.date = params.date
         if (params.sortField) queryParams.sortField = params.sortField
