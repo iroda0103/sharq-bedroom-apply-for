@@ -514,15 +514,17 @@ export default {
         // }
         const params = {
         }
-        const page={}
+        const page = {}
 
         if (filters.status) params.status = filters.status
         if (filters.date) params.date = filters.date
         if (filters.search) params.search = filters.search
-        if (pageInfo.limit) page.limit = pageInfo.limit
-        if (pageInfo.offset) page.offset = (currentPage.value - 1) * pageInfo.limit
+        if (pageInfo.limit) {
+          page.limit = pageInfo.limit
+          page.offset = (currentPage.value - 1) * pageInfo.limit
+        }
 
-        const response = await api.getApplications(params,page)
+        const response = await api.getApplications(params, page)
         applications.value = response.data || []
         Object.assign(pageInfo, response.pageInfo || {})
       } catch (error) {
