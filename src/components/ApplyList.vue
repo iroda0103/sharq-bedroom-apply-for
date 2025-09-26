@@ -515,7 +515,7 @@ export default {
     };
 
     const downloadFile = async (fileName) => {
-      const url = this.getImageUrl(fileName);
+      const url = getImageUrl(fileName);
       const link = document.createElement("a");
       link.href = url;
       link.download = fileName;
@@ -1887,6 +1887,7 @@ th.sortable i {
   border: 1px solid #e3e3e3;
   transition: box-shadow 0.2s;
 }
+
 .passport-image {
   width: 100%;
   height: 100%;
