@@ -42,7 +42,7 @@ function createAxiosInstance(baseUrl) {
           config.headers.Authorization = `Bearer ${token}`
         }
       }
-      
+
       console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`, config.params)
       return config
     },
@@ -59,7 +59,7 @@ function createAxiosInstance(baseUrl) {
     },
     (error) => {
       console.error('API Error:', error.response?.data?.message)
-      
+
       // if (error.response) {
       //   // Server responded with error status
       //   const { status, data } = error.response
@@ -104,13 +104,13 @@ export function apiService(baseUrl) {
     /**
      * Get application with pagination and filters
      */
-    async getApplications(params = {}) {
+    async getApplications(params = {}, page = {}) {
       try {
         const queryParams = {
-        //   limit: params.limit || 10,
-        //   offset: params.offset || 0,
-        filters:{},
-        page:{},
+          //   limit: params.limit || 10,
+          //   offset: params.offset || 0,
+          filters: {},
+          page: {},
         }
 
         // Add optional filters
@@ -119,6 +119,9 @@ export function apiService(baseUrl) {
         if (params.date) queryParams.date = params.date
         if (params.sortField) queryParams.sortField = params.sortField
         if (params.sortDirection) queryParams.sort = params.sortDirection
+        if (params.sortDirection) queryParams.sort = params.sortDirection
+        if (page.limit) queryParams.page.limit = page.limit
+        if (page.offset) queryParams.page.offset = page.offset
 
         // Try multiple possible endpoints
         let response
@@ -291,11 +294,11 @@ export function apiService(baseUrl) {
         } catch (error) {
           if (error.status === 404 || error.status === 405) {
             // Fallback to individual updates
-            const promises = ids.map(id => 
+            const promises = ids.map(id =>
               this.updateApplicationtatus(id, updateData).catch(err => ({ error: err, id }))
             )
             const results = await Promise.all(promises)
-            
+
             const failures = results.filter(result => result.error)
             if (failures.length > 0) {
               console.warn(`${failures.length} out of ${ids.length} updates failed`, failures)
@@ -336,7 +339,7 @@ export function apiService(baseUrl) {
             throw error
           }
         }
-// successfull
+        // successfull
         const data = response.data
         return {
           total: data.total || 0,
@@ -451,7 +454,7 @@ export function apiService(baseUrl) {
     async testConnection() {
       const endpoints = [
         '/application',
-        '/api/application', 
+        '/api/application',
         '/application',
         '/health',
         '/api/health'
@@ -479,28 +482,28 @@ export function apiService(baseUrl) {
  */
 export function handleApiError(error, defaultMessage = 'Xatolik yuz berdi') {
   // if (error instanceof ApiError) {
-    // switch (error.code) {
-    //   case 'NETWORK_ERROR':
-    //     return 'Internet aloqasi yo\'q. Iltimos internetni tekshiring.'
-    //   case 'INVALID_STATUS':
-    //     return 'Noto\'g\'ri holat tanilgan.'
-    //   case 'MISSING_ID':
-    //     return 'Ariza ID topilmadi.'
-    //   case 'HTTP_401':
-    //     return 'Sizga ruxsat berilmagan. Qayta kiring.'
-    //   case 'HTTP_403':
-    //     return 'Bu amalni bajarish uchun ruxsatingiz yo\'q.'
-    //   case 'HTTP_404':
-    //     return 'Ma\'lumot topilmadi yoki server manzili noto\'g\'ri.'
-    //   case 'HTTP_500':
-    //     return 'Server xatosi. Iltimos keyinroq urinib ko\'ring.'
-    //   case 'NO_WORKING_ENDPOINT':
-    //     return 'Server bilan bog\'lanib bo\'lmayapti. Admin bilan bog\'laning.'
-    //   default:
-    //     return error.message || defaultMessage
-    // }
+  // switch (error.code) {
+  //   case 'NETWORK_ERROR':
+  //     return 'Internet aloqasi yo\'q. Iltimos internetni tekshiring.'
+  //   case 'INVALID_STATUS':
+  //     return 'Noto\'g\'ri holat tanilgan.'
+  //   case 'MISSING_ID':
+  //     return 'Ariza ID topilmadi.'
+  //   case 'HTTP_401':
+  //     return 'Sizga ruxsat berilmagan. Qayta kiring.'
+  //   case 'HTTP_403':
+  //     return 'Bu amalni bajarish uchun ruxsatingiz yo\'q.'
+  //   case 'HTTP_404':
+  //     return 'Ma\'lumot topilmadi yoki server manzili noto\'g\'ri.'
+  //   case 'HTTP_500':
+  //     return 'Server xatosi. Iltimos keyinroq urinib ko\'ring.'
+  //   case 'NO_WORKING_ENDPOINT':
+  //     return 'Server bilan bog\'lanib bo\'lmayapti. Admin bilan bog\'laning.'
+  //   default:
+  //     return error.message || defaultMessage
   // }
-  
+  // }
+
   return error.response?.data?.message || defaultMessage
 }
 
@@ -509,14 +512,14 @@ export function handleApiError(error, defaultMessage = 'Xatolik yuz berdi') {
  */
 export function createAuthenticatedApiService(baseUrl, tokenKey = 'token') {
   const service = apiService(baseUrl)
-  
+
   // Add token refresh logic if needed
   service.refreshToken = async () => {
     try {
       const response = await axios.post(`${baseUrl}/auth/refresh`, {
         refreshToken: localStorage.getItem('refreshToken')
       })
-      
+
       localStorage.setItem(tokenKey, JSON.stringify(response.data))
       return response.data
     } catch (error) {
@@ -526,7 +529,7 @@ export function createAuthenticatedApiService(baseUrl, tokenKey = 'token') {
       throw error
     }
   }
-  
+
   return service
 }
 
