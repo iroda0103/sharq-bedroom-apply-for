@@ -44,10 +44,8 @@ main {
 }
 
 .logo {
-    width: 250px;
+    height:60px;
     color: #000;
-    margin-bottom: 20px;
-
 }
 
 header {

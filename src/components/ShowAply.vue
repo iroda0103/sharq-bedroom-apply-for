@@ -44,6 +44,7 @@
               {{ errors.phone }}
             </div>
           </div>
+            <a class="input-help replace-url" href="/apply">Ariza topshirish</a>
 
           <button type="submit" class="search-btn" :disabled="!isFormValid || loading">
             <i v-if="loading" class="fas fa-spinner fa-spin"></i>
@@ -59,9 +60,9 @@
           </div>
 
           <div class="contact-section">
-            <a href="https://t.me/sharq_qabul" target="_blank" class="contact-link">
+            <a href="https://t.me/sharq_yotoqxona" target="_blank" class="contact-link">
               <i class="fab fa-telegram"></i>
-              @sharq_qabul
+              @sharq_yotoqxona 
             </a>
           </div>
         </div>
@@ -225,7 +226,7 @@
                     <i class="fas fa-qrcode"></i>
                     QR kod
                   </button>
-                </div> -->@sharq_qabul 
+                </div> -->@sharq_yotoqxona
               </div>
             </div>
 
@@ -565,13 +566,14 @@ export default {
   text-align: center;
 }
 
-.logo-section {
-  margin-bottom: 2rem;
-}
+/* .logo-section {
+  margin-bottom: 1.4rem;
+} */
 
 .logo {
   height: 60px;
   object-fit: contain;
+  margin-bottom: 30px;
 }
 
 .login-title {
@@ -663,7 +665,16 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 0.6rem;
+}
+.replace-url{
+  cursor: pointer;
+  color: #006ba6;
+  width: 100%;
+  text-align: center;
+  padding: 0 12px;
+  font-weight: bold;
+  /* text-decoration: underline; */
 }
 
 .search-btn:hover:not(:disabled) {
@@ -911,5 +922,28 @@ export default {
   padding: 1rem;
   background: #f3f4f6;
   border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .login-title{
+    font-size: 2rem;
+  }
+ 
+}
+@media (max-width: 500px) {
+  .login-title{
+    font-size: 1.5rem;
+  }
+  .login-card{
+    padding: 1.7rem;
+  }
+  .application-login{
+    padding: 1rem 0.5rem;
+  }
+  .login-subtitle{
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+ 
 }
 </style>

@@ -5,8 +5,8 @@ import ApplyList from '../components/ApplyList.vue'
 
 const routes = [
     // { path: '/restaurant/:id', name: 'RestaurantMenu', component: RestaurantMenu }
-    { path: '/', name: 'AddApplication', component: AddApplication },
-    { path: '/result', name: 'ShowAply', component: ShowAply },
+    { path: '/apply', name: 'AddApplication', component: AddApplication },
+    { path: '/', name: 'ShowAply', component: ShowAply },
     // { path: '/natija', name: 'ShowAply', component: ShowAply },
     { path: '/list', name: 'ApplyList', component: ApplyList },
     // { path: '/:catchAll(.*)', name: 'NotFound', component: NotFound }

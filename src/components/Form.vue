@@ -20,6 +20,7 @@
           <h3>✅ Arizangiz muvaffaqiyatli yuborildi!</h3>
           <p>Tez orada siz bilan bog'lanamiz. Telegram: <a href="https://t.me/sharq_yotoqxona"
               target="_blank">@sharq_yotoqxona</a></p>
+
         </div>
 
         <!-- Status Messages -->
@@ -269,6 +270,9 @@
           <a href="https://t.me/sharq_yotoqxona" target="_blank" class="telegram-btn">
             <i class="fab fa-telegram-plane"></i>
             @sharq_yotoqxona
+          </a>
+          <a href="/" target="_blank" class="telegram-btn check-apply">
+            Ariza holatini tekshirish
           </a>
         </div>
 
@@ -755,7 +759,7 @@ export default {
 <style>
 .dormitory-form {
   min-height: 100vh;
-  padding: 2rem 1rem;
+  padding: 2rem;
   flex-grow: 1;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
@@ -792,6 +796,10 @@ export default {
   gap: 10px;
   width: 100%;
   justify-content: center;
+}
+
+.login {
+  height: 60px;
 }
 
 /* Edit Mode Indicator */
@@ -1404,6 +1412,12 @@ export default {
   background: rgba(0, 0, 0, 0.9);
 }
 
+.check-apply {
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #00cc89, #0058a6) !important;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .form-wrapper {
@@ -1415,8 +1429,12 @@ export default {
 
 @media (max-width: 768px) {
   .dormitory-form {
-    padding: 1rem;
+    /* padding: 1rem; */
   }
+}
+
+@media (max-width: 868px) {
+
 
   .form-container,
   .info-card,
@@ -1444,6 +1462,7 @@ export default {
 
   .title {
     font-size: 1.5rem;
+    /* flex-direction: row; */
   }
 
   .section-title {
@@ -1452,6 +1471,10 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .dormitory-form {
+    padding: 1rem 0.5rem;
+  }
+
   .form-container {
     padding: 1rem;
   }
@@ -1508,12 +1531,13 @@ export default {
 .fa-spin {
   animation: spin 1s linear infinite;
 }
+
 /* Responsive Design Improvements */
 @media (max-width: 1200px) {
   .form-wrapper {
     grid-template-columns: 3fr 2fr;
     gap: 40px;
-    padding: 0 40px;
+    /* padding: 0 40px; */
   }
 }
 
@@ -1521,71 +1545,69 @@ export default {
   .form-wrapper {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding: 0 30px;
+    /* padding: 0 30px; */
   }
-  
+
   .info-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  
+
   .progress-card {
     grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 768px) {
-  .dormitory-form {
-    padding: 1rem 0.5rem;
-  }
-  
+
+
   .form-wrapper {
-    padding: 0 15px;
+    /* padding: 0 15px; */
     gap: 20px;
   }
-  
+
   .form-container {
     padding: 1.5rem;
     border-radius: 15px;
   }
-  
+
   .title {
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
     text-align: center;
   }
-  
+
   .info-section {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr !important;
     gap: 1rem;
   }
-  
+
   .actions {
     flex-direction: column;
     gap: 0.75rem;
   }
-  
+
   .btn {
     width: 100%;
     justify-content: center;
   }
-  
+
   .download-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .btn-download {
     width: 100%;
     max-width: 280px;
   }
-  
+
   /* Status messages mobile optimization */
   .success-message,
   .rejection-message,
@@ -1593,7 +1615,7 @@ export default {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .success-icon,
   .rejection-icon,
   .approval-icon {
@@ -1607,84 +1629,85 @@ export default {
   .dormitory-form {
     padding: 0.5rem;
   }
-  
+
   .form-wrapper {
-    padding: 0 10px;
+    /* padding: 0 10px; */
     gap: 15px;
   }
-  
+
   .form-container {
     padding: 1rem;
     border-radius: 12px;
   }
-  
+
   .title {
-    font-size: 1.2rem;
-    flex-direction: column;
+    font-size: 1.4rem;
     gap: 5px;
+    margin-bottom: 30px;
   }
-  
+
   .section-title {
     font-size: 1.1rem;
-    margin: 1.5rem 0 0.75rem 0;
+    margin: 2rem 0 0rem 0;
   }
-  
-  .input, 
+
+  .input,
   .textarea {
     padding: 0.6rem 0.8rem;
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
+    /* Prevents zoom on iOS */
   }
-  
+
   .upload-area {
     padding: 1.5rem 1rem;
   }
-  
+
   .upload-area i {
     font-size: 2rem;
   }
-  
+
   .upload-area span {
     font-size: 0.9rem;
   }
-  
+
   /* Mobile-first file items */
   .file-item {
     padding: 0.5rem;
     font-size: 0.9rem;
   }
-  
+
   /* Better mobile modal */
   .modal-content {
     margin: 0.5rem;
     max-height: calc(100vh - 1rem);
     border-radius: 15px;
   }
-  
+
   .image-modal-content {
     max-width: 95vw;
     max-height: 95vh;
   }
-  
+
   /* Improved steps for mobile */
   .steps {
     gap: 0.75rem;
   }
-  
+
   .step {
     padding: 0.5rem;
   }
-  
+
   .step-number {
     width: 28px;
     height: 28px;
     font-size: 0.8rem;
   }
-  
+
   /* Better checkbox alignment */
   .checkbox-container {
     align-items: flex-start;
   }
-  
+
   .agreement-text {
     font-size: 0.9rem;
     line-height: 1.4;
@@ -1695,24 +1718,24 @@ export default {
   .form-container {
     padding: 0.75rem;
   }
-  
+
   .title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
-  
+
   .section-title {
     font-size: 1rem;
   }
-  
+
   .btn {
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
   }
-  
+
   .upload-area {
     padding: 1rem 0.75rem;
   }
-  
+
   .success-message h3,
   .rejection-message h3,
   .approval-message h3 {
@@ -1725,7 +1748,7 @@ export default {
   .dormitory-form {
     padding: 0.5rem;
   }
-  
+
   .form-container {
     max-height: 90vh;
     overflow-y: auto;
@@ -1733,8 +1756,10 @@ export default {
 }
 
 /* High-density displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .input, 
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+  .input,
   .textarea,
   .btn {
     border-width: 1.5px;
@@ -1763,18 +1788,18 @@ export default {
     background: white !important;
     padding: 0;
   }
-  
+
   .form-wrapper {
     grid-template-columns: 1fr;
     gap: 0;
   }
-  
+
   .info-section,
   .btn,
   .upload-area {
     display: none;
   }
-  
+
   .form-container {
     box-shadow: none;
     border: 1px solid #ccc;
