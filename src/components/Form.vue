@@ -1069,7 +1069,7 @@ export default {
 }
 
 .remove-btn {
-  background: #ef4444;
+  /* background: rgba(0, 136, 204, 0.3); */
   color: white;
 }
 
@@ -1079,7 +1079,7 @@ export default {
 }
 
 .remove-btn:hover {
-  background: #dc2626;
+  /* background: #dc2626; */
 }
 
 .view-btn:hover {
