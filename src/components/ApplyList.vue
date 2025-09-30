@@ -394,7 +394,7 @@ export default {
   setup() {
     // Configuration
     const BASE_URL = process.env.VUE_APP_API_BASE_URL || 'https://api.sharq-dev.uz/api'
-    const ITEMS_PER_PAGE = 10
+    const ITEMS_PER_PAGE = 100
 
     // State
     const token = localStorage.getItem('token')
