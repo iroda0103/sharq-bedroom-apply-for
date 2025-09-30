@@ -108,7 +108,7 @@ export function apiService(baseUrl) {
       try {
         const queryParams = {
           page: {
-            limit: page.limit || 10,
+            limit: page.limit || 100,
             offset: page.offset || 0,
           },
           filters: {},
